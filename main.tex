@@ -1,0 +1,222 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Required for better horizontal rules in tables
+\usepackage{amsmath} % Required for math features
+\usepackage[margin=1in]{geometry} % Set margins
+\usepackage{hyperref} % For hyperlinks in the PDF
+
+\title{Codebase: GLMC}
+\author{Harry}
+\date{Last Update: \today}
+
+\begin{document}
+
+\maketitle
+
+\section{2023/11/13 CE Loss}
+\begin{table}[h!]
+\centering
+\caption{Experiment Parameters}
+\label{tab:parameters}
+\begin{tabular}{ll}
+\toprule
+Parameter & Value \\
+\midrule
+Dataset & CIFAR-10 \\
+Architecture & ResNet-32 \\
+Number of Classes & 10 \\
+Imbalance Rate & 0.01 \\
+Learning Rate & 0.01 \\
+Epochs & 200 \\
+Batch Size & 64 \\
+Momentum & 0.9 \\
+Weight Decay & 0.005 \\
+knn & False/True \\
+% Include other parameters as needed
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Results Summary}:
+\begin{itemize}
+    \item Training Time: 45 min 58.60 sec (1:00:15.68 with knn)
+    \item Per class num: [5000, 2997, 1796, 1077, 645, 387, 232, 139, 83, 50]
+    \item Best Precision@1: 78.27\%  (83.1\% with knn)
+    \item Final Epoch Loss: 0.0080 (0.0085 with knn)
+    \item Validation Precision@1: 77.19\% (82.390\% with knn)
+    \item Validation Precision@5: 97.98\% (99.120\% with knn)
+\end{itemize}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{Plot/CE/cosine_similarity_between_class_weights.png}
+\caption{Cosine Similarity between Class Weights}
+\end{figure}
+\hfill
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{Plot/CE/cosine_similarity_between_class_weights_and_mean_features.png}
+\caption{Cosine Similarity between Class Weights and Mean Features}
+\end{figure}
+
+
+\newpage
+
+
+\section{2023/11/15 VS Loss}
+\begin{table}[h!]
+\centering
+\caption{Experiment Parameters}
+\label{tab:parameters_vs}
+\begin{tabular}{ll}
+\toprule
+Parameter & Value \\
+\midrule
+Dataset & CIFAR-10 \\
+Architecture & ResNet-32 \\
+Number of Classes & 10 \\
+Imbalance Rate & 0.01 \\
+Learning Rate & 0.01 \\
+Epochs & 200 \\
+Batch Size & 64 \\
+Momentum & 0.9 \\
+Weight Decay & 0.005 \\
+knn & False/True \\
+\(\gamma\) & 0.15 \\
+\(\tau\) & 1.25 \\
+% Include other parameters as needed
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Results Summary}:
+\begin{itemize}
+    \item Training Time: 45 min 46.36 sec
+    \item Per class num: [5000, 2997, 1796, 1077, 645, 387, 232, 139, 83, 50]
+    \item Best Precision@1: 82.080\%
+    \item Final Epoch Loss: 0.0183
+    \item Validation Precision@1: 81.840\%
+    \item Validation Precision@5: 97.160\%
+\end{itemize}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{Plot/VS/VS_cos_190_gm015_tau125.png}
+\caption{Cosine Similarity between Class Weights}
+\end{figure}
+\hfill
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{Plot/VS/VS_WiHi_190_gm015_tau125.png}
+\caption{Cosine Similarity between Class Weights and Mean Features}
+\end{figure}
+
+
+
+
+\newpage
+
+
+\section{2023/11/20 VS Loss}
+\begin{table}[h!]
+\centering
+\caption{Experiment Parameters}
+\label{tab:parameters_vs}
+\begin{tabular}{ll}
+\toprule
+Parameter & Value \\
+\midrule
+Dataset & CIFAR-10 \\
+Architecture & ResNet-50 \\
+Number of Classes & 10 \\
+Imbalance Rate & 0.01 \\
+Learning Rate & 0.01 \\
+Epochs & 200 \\
+Batch Size & 64 \\
+Momentum & 0.9 \\
+Weight Decay & 0.005 \\
+knn & False/True \\
+\(\gamma\) & 0.15 \\
+\(\tau\) & 1.25 \\
+% Include other parameters as needed
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Results Summary}:
+\begin{itemize}
+    \item Training Time: 91 min 36.66 sec
+    \item Per class num: [5000, 2997, 1796, 1077, 645, 387, 232, 139, 83, 50]
+    \item Best Precision@1: 75.160\%
+    \item Final Epoch Loss: 0.0689
+    \item Validation Precision@1: 74.770\%
+    \item Validation Precision@5: 97.540\%
+\end{itemize}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{Plot/VS_res50/cos_res50.png}
+\caption{Cosine Similarity between Class Weights}
+\end{figure}
+\hfill
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{Plot/VS_res50/Wi_Hi_res50.png}
+\caption{Cosine Similarity between Class Weights and Mean Features}
+\end{figure}
+
+\newpage
+
+
+\section{2023/11/20 VS Loss}
+\begin{table}[h!]
+\centering
+\caption{Experiment Parameters}
+\label{tab:parameters_vs}
+\begin{tabular}{ll}
+\toprule
+Parameter & Value \\
+\midrule
+Dataset & CIFAR-10 \\
+Architecture & ResNet-32 \\
+Number of Classes & 10 \\
+Imbalance Rate & 0.01 \\
+Learning Rate & 0.01 \\
+Epochs & 200 \\
+Batch Size & 64 \\
+Momentum & 0.9 \\
+Contrastive Weight & 4\\
+Weight Decay & 0.005 \\
+knn & False/True \\
+\(\gamma\) & 0.15 \\
+\(\tau\) & 1.25 \\
+% Include other parameters as needed
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Results Summary}:
+\begin{itemize}
+    \item Training Time: 57 min 53 sec
+    \item Per class num: [5000, 5000, 5000, 5000, 5000, 50, 50, 50, 50, 50]
+    \item Best Precision@1: 63.99\%
+    \item Final Epoch Loss: 0.1498
+    \item Validation Precision@1: 89.062\%
+    \item Validation Precision@5: 96.875\%
+\end{itemize}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{Plot/stage/cos_VS_5000_50_epoch_199.png}
+\caption{Cosine Similarity between Class Weights}
+\end{figure}
+\hfill
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{Plot/stage/Wi_Hi_cos_VSres50_epoch_199.png}
+\caption{Cosine Similarity between Class Weights and Mean Features}
+\end{figure}
+
+
+
+\end{document}
