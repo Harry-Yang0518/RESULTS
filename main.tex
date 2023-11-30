@@ -313,7 +313,7 @@ knn & True \\
 
 \begin{multicols}{2} % 开始两栏布局
 % 左栏
-\section{2023/11/21 VS Loss stage}
+\section{2023/11/21 VS Loss stage --IGNORE!}
 \begin{table}[H]
 \centering
 \caption{Experiment Parameters}
@@ -366,5 +366,117 @@ knn & True \\
 \end{multicols} % 结束两栏布局
 
 
+
+\newpage
+
+\begin{multicols}{2} % 开始两栏布局
+% 左栏
+\section{2023/11/29 VS Loss stage --simulate CE}
+\begin{table}[H]
+\centering
+\caption{Experiment Parameters}
+\label{tab:parameters}
+\begin{tabular}{ll}
+\toprule
+Parameter & Value \\
+\midrule
+Dataset & CIFAR-10 \\
+Architecture & ResNet-32 \\
+Loss & vs \\
+Number of Classes & 10 \\
+Imbalance Rate & 0.01 \\
+Learning Rate & 0.01 \\
+Epochs & 200 \\
+Batch Size & 64 \\
+Momentum & 0.9 \\
+Weight Decay & 0.005 \\
+$\gamma$ & 0\\
+$\tau$ & 0\\
+knn & True \\
+% Include other parameters as needed
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Results Summary}:
+\begin{itemize}
+    \item Training Time: 89 min 25 sec
+    \item Per class num: [5000, 5000, 5000, 5000, 5000, 50, 50, 50, 50, 50]
+    \item Best Precision@1: 70.390\%  
+    \item Final Epoch Loss: 0.04 
+    \item Validation Precision@1: 66.660\%
+    \item Validation Precision@5: 98.810%
+\end{itemize}
+
+% 右栏
+\columnbreak
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{Plot/CE/stage--1/cos_VS_5000_50_epoch_199.png}
+\caption{Cosine Similarity between Class Weights}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{Plot/CE/stage--1/Wi_Hi_cos_VS_5000_50_epoch_199.png}
+\caption{Cosine Similarity between Class Weights and Mean Features}
+\end{figure}
+
+\end{multicols} % 结束两栏布局
+
+\newpage
+
+\begin{multicols}{2} % 开始两栏布局
+% 左栏
+\section{2023/11/30 VS Loss }
+\begin{table}[H]
+\centering
+\caption{Experiment Parameters}
+\label{tab:parameters}
+\begin{tabular}{ll}
+\toprule
+Parameter & Value \\
+\midrule
+Dataset & CIFAR-10 \\
+Architecture & ResNet-32 \\
+Loss & vs \\
+Number of Classes & 10 \\
+Imbalance Rate & 0.01 \\
+Learning Rate & 0.01 \\
+Epochs & 200 \\
+Batch Size & 64 \\
+Momentum & 0.9 \\
+Weight Decay & 0.005 \\
+$\gamma$ & 0.15\\
+$\tau$ & 1.25\\
+knn & True \\
+% Include other parameters as needed
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Results Summary}:
+\begin{itemize}
+    \item Training Time: 89 min 29 sec
+    \item Per class num: [5000, 5000, 5000, 5000, 5000, 50, 50, 50, 50, 50]
+    \item Best Precision@1: 68.380\%  
+    \item Final Epoch Loss: 0.05 
+    \item Validation Precision@1: 62.800\%
+    \item Validation Precision@5: 98.770%
+\end{itemize}
+
+% 右栏
+\columnbreak
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{Plot/VS/2023_11_30/cos_VS_5000_50_epoch_199.png}
+\caption{Cosine Similarity between Class Weights}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{Plot/VS/2023_11_30/Wi_Hi_cos_VS_5000_50_epoch_199.png}
+\caption{Cosine Similarity between Class Weights and Mean Features}
+\end{figure}
+
+\end{multicols} % 结束两栏布局
 
 \end{document}
